@@ -1,8 +1,9 @@
+name: リリースの自動化
+
 on:
   push:
-branches:
-  - master
-name: リリースの自動化
+    branches:
+      - master
 
 jobs:
   auto_release:
