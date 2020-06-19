@@ -2,7 +2,7 @@ name: リリースの自動作成
 
 on:
   pull_request:
-    types: created
+    types: [opened, reopened]
     branches:
       - master
 
