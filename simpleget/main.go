@@ -19,4 +19,7 @@ func main() {
   }
   log.Println(string(body))
   log.Println("status:", resp.Status)
+  log.Println("StatusCode:", resp.StatusCode)
+  log.Println("Headers:", resp.Header)
+  log.Println("Content-Length:", resp.Header.Get("Content-Length"))
 }
