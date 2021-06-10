@@ -1,25 +1,32 @@
 package main
 
 import (
-  "io/ioutil"
-  "log"
-  "net/http"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
 )
 
-func main() {
-  resp, err := http.Get("http://localhost:18888")
-  if err != nil {
-    panic(err)
-  }
-  defer resp.Body.Close()
+func main3() {
+	values := url.Values{
+		"query": {"hello world"},
+	}
 
-  body, err := ioutil.ReadAll(resp.Body)
-  if err != nil {
-    panic(err)
-  }
-  log.Println(string(body))
-  log.Println("status:", resp.Status)
-  log.Println("StatusCode:", resp.StatusCode)
-  log.Println("Headers:", resp.Header)
-  log.Println("Content-Length:", resp.Header.Get("Content-Length"))
+	resp, err := http.Head("http://localhost:18888" + "?" + values.Encode())
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	log.Println(string(body))
+	/*
+	   log.Println("status:", resp.Status)
+	   log.Println("StatusCode:", resp.StatusCode)
+	   log.Println("Headers:", resp.Header)
+	   log.Println("Content-Length:", resp.Header.Get("Content-Length"))
+	*/
 }
